@@ -1,7 +1,8 @@
 <md-toolbar color="primary">
   <md-toolbar-row>
     <span fxFlex></span>
-    <button md-raised-button color="accent" class="ml-xs mr-xs" (click)="openEditor()">Edit profile</button>
+    <button md-raised-button color="accent" class="ml-xs mr-xs" (click)="openEditor()">프로필 수정</button>
+    <button md-raised-button color="warn" class="ml-xs mr-xs" [routerLink]="['/forms', 'event']">모임 만들기</button>
   </md-toolbar-row>
 </md-toolbar>
 <div fxLayout="row" fxLayoutWrap="wrap">

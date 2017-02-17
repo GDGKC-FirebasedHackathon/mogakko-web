@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AngularFire} from "angularfire2";
 import {Profile} from "./profile.interface";
 import {MdDialogRef, MdDialog, MdDialogConfig} from "@angular/material";
+import {AppsService} from "../apps.service";
 
 @Component({
   selector: 'app-social',
@@ -11,16 +12,20 @@ import {MdDialogRef, MdDialog, MdDialogConfig} from "@angular/material";
 export class SocialComponent implements OnInit {
 
   private profile: any;
+  private uid: any;
 
-  constructor(private af: AngularFire, public dialog: MdDialog) {}
+  constructor(private af: AngularFire, public dialog: MdDialog, public appsService: AppsService) {}
 
   ngOnInit(){
     this.af.auth.subscribe(
-      (data) => {
-        this.profile = new Profile(data.auth.displayName, data.auth.email, data.auth.photoURL);
-        if(!this.profile.email){
-          this.profile.email = "이메일을 등록해주세요."
-        }
+      (auth) => {
+        this.uid = auth.auth.uid;
+        let data = this.af.database.object(`profiles/${this.uid}`).take(1);
+        data.subscribe(
+          (snap) => {
+            this.profile = new Profile(snap.name, snap.email, snap.profileImgUrl);
+          }
+        );
       },
     )
   }
@@ -41,9 +46,17 @@ export class SocialComponent implements OnInit {
   };
 
   openEditor(){
+    this.appsService.setProfile({name: this.profile.name, email: this.profile.email});
     this.dialogRef = this.dialog.open(profileEditorDialog, this.config);
     this.dialogRef.afterClosed().subscribe(profile => {
-      console.log(profile);
+      if(this.profile.name == profile.name && this.profile.email == profile.email){
+        return
+      }else{
+        this.af.database.object(`/profiles/${this.uid}`)
+          .update(profile);
+        this.profile.name  = profile.name;
+        this.profile.email = profile.email;
+      }
     })
   }
 
@@ -53,30 +66,18 @@ export class SocialComponent implements OnInit {
   selector: 'edit-profile-dialog',
   template: `
   <h5 class="mt-0">프로필 수정</h5>
-  <md-input placeholder="이름" #name type="text" style="width: 100%"></md-input>
-  <md-input placeholder="E-MAIL" #email type="text" style="width: 100%"></md-input>
+  <md-input placeholder="이름" #name type="text" [(ngModel)]="profile.name" style="width: 100%"></md-input>
+  <md-input placeholder="E-MAIL" #email type="text" [(ngModel)]="profile.email" style="width: 100%"></md-input>
   <button color="accent" md-raised-button style="width: 100%" type="button"
-  (click)="dialogRef.close()">제출</button>`
+  (click)="dialogRef.close(profile)">제출</button>`
 })
-export class profileEditorDialog {
-  constructor(public dialogRef: MdDialogRef <profileEditorDialog> ) {}
+export class profileEditorDialog implements OnInit {
+  constructor(public dialogRef: MdDialogRef <profileEditorDialog>, public appsService: AppsService) {}
+
+  private profile: any;
+
+  ngOnInit(){
+    this.profile = this.appsService.getProfile();
+  }
+
 }
-
-
-//
-//
-// import { Component } from '@angular/core';
-// import { MdDialog, MdDialogRef, MdDialogConfig } from '@angular/material';
-//
-// @Component({
-//   selector: 'app-dialog',
-//   templateUrl: './dialog.component.html',
-//   styleUrls: ['./dialog.component.scss']
-// })
-// export class DialogComponent {
-//
-
-//
-//
-
-// }

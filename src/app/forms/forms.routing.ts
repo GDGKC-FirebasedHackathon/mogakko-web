@@ -12,7 +12,7 @@ export const FormRoutes: Routes = [
       path: 'upload',
       component: FormUploadComponent
     }, {
-      path: 'validation',
+      path: 'event',
       component: FormValidationComponent
     }, {
       path: 'editor',

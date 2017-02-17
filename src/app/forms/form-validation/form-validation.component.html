@@ -1,27 +1,27 @@
 <md-card>
-  <md-card-title>Form validation</md-card-title>
-  <md-card-subtitle>Angular2 custom validation</md-card-subtitle>
+  <md-card-title>모임 등록</md-card-title>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <md-card-content> 
-      <div fxLayout="row" fxLayoutWrap="wrap">
-        <div class="mb-1">
-        	<md-input placeholder="First name" [formControl]="form.controls['fname']" style="width: 100%"></md-input>
-          <small *ngIf="form.controls['fname'].hasError('required') && form.controls['fname'].touched" class="md-text-warn">You must include a first name.</small>
-          <small *ngIf="form.controls['fname'].hasError('minlength') && form.controls['fname'].touched" class="md-text-warn">Your first name must be at least 5 characters long.</small>
-          <small *ngIf="form.controls['fname'].hasError('maxlength') && form.controls['fname'].touched" class="md-text-warn">Your first name cannot exceed 10 characters.</small>
-        </div>
-      </div>
-
+    <md-card-content>
       <div class="mb-1">
-      	<md-input placeholder="Email address" [formControl]="form.controls['email']" type="email" style="width: 100%"></md-input>
-        <small *ngIf="form.controls['email'].hasError('required') && form.controls['email'].touched" class="md-text-warn">You must include an email address.</small>
-        <small *ngIf="form.controls['email'].errors?.email && form.controls['email'].touched" class="md-text-warn">You must include a valid email address.</small>
+        <md-input placeholder="모임 이름" [formControl]="form.controls['name']"  type="text" style="width: 100%"></md-input>
+        <small *ngIf="form.controls['name'].hasError('required') && form.controls['name'].touched" class="md-text-warn">
+          모임 이름을 등록 해야합니다.</small>
+        <small *ngIf="form.controls['name'].hasError('minlength') && form.controls['name'].touched" class="md-text-warn">
+          모임 이름을 한 글자 이상 등록해주세요.</small>
+        <small *ngIf="form.controls['name'].hasError('maxlength') && form.controls['name'].touched" class="md-text-warn">
+          모임 이름은 30 글자 이하로 등록해주세요.</small>
       </div>
-
       <div class="mb-1">
-      	<md-input placeholder="Website address (http://nyasha.me)" [formControl]="form.controls['url']" type="url" style="width: 100%"></md-input>
-        <small *ngIf="form.controls['url'].hasError('required') && form.controls['url'].touched" class="md-text-warn">You must include a web address.</small>
-        <small *ngIf="form.controls['url'].errors?.url && form.controls['url'].touched" class="md-text-warn">You must include a valid web address.</small>
+        <md-input-container style="width: 100%">
+        <textarea md-input placeholder="모임 설명"
+                  [formControl]="form.controls['description']" style="width: 100%"></textarea>
+        </md-input-container>
+        <small *ngIf="form.controls['description'].hasError('required') && form.controls['description'].touched" class="md-text-warn">
+          모임 설명을 등록 해야합니다.</small>
+        <small *ngIf="form.controls['description'].hasError('minlength') && form.controls['description'].touched" class="md-text-warn">
+          모임 설명을 한 글자 이상 등록해주세요.</small>
+        <small *ngIf="form.controls['description'].hasError('maxlength') && form.controls['description'].touched" class="md-text-warn">
+          모임 설명은 500 글자 이하로 등록해주세요.</small>
       </div>
 
       <div class="mb-1">
@@ -31,46 +31,18 @@
       </div>
 
       <div class="mb-1">
-      	<md-input placeholder="Number range (between 5 and 9)" [formControl]="form.controls['range']" style="width: 100%"></md-input>
-        <small *ngIf="form.controls['range'].hasError('required') && form.controls['range'].touched" class="md-text-warn">You must enter a number.</small>
-        <small *ngIf="form.controls['range'].errors?.range && form.controls['range'].touched" class="md-text-warn">Number should be between 5 and 9.</small>
+        <input (change)="uploadListener($event)" placeholder="모임 소개 사진"
+               [formControl]="form.controls['image_url']" type="file" style="width: 100%">
       </div>
 
       <div class="mb-1">
-      	<md-input placeholder="Credit card (4111 1111 1111 1111)" [formControl]="form.controls['creditCard']" style="width: 100%"></md-input>
-        <small *ngIf="form.controls['creditCard'].hasError('required') && form.controls['creditCard'].touched" class="md-text-warn">You must enter a credit card.</small>
-        <small *ngIf="form.controls['creditCard'].errors?.creditCard && form.controls['creditCard'].touched" class="md-text-warn">You must enter a valid credit card number.</small>
+        <div id="map" style="width:100%;height:350px;"></div>
       </div>
 
-      <div class="mb-1">
-      	<md-input placeholder="US Phone number (15417543010)" [formControl]="form.controls['phone']" type="text" style="width: 100%"></md-input>
-        <small *ngIf="form.controls['phone'].hasError('required') && form.controls['phone'].touched" class="md-text-warn">You must include phone number.</small>
-        <small *ngIf="form.controls['phone'].errors?.phone && form.controls['phone'].touched" class="md-text-warn">You must include a valid phone number.</small>
-      </div>
-
-    	<div class="mb-1">
-    		<md-input placeholder="Password" [formControl]="form.controls['password']" type="password" style="width: 100%"></md-input>
-    		<small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="md-text-warn">You must include password.</small>
-      </div>
-
-      <div class="mb-1">
-        <md-input placeholder="Confirm Password" [formControl]="form.controls['confirmPassword']" type="password" style="width: 100%"></md-input>
-    		<small *ngIf="form.controls['confirmPassword'].hasError('required') && form.controls['confirmPassword'].touched" class="md-text-warn">You must include confirm password.</small>
-    		<small *ngIf="form.controls['confirmPassword'].errors?.equalTo" class="md-text-warn">Passwords do not math.</small>
-    	</div>
-
-      <div class="mb-1">
-        <label>Gender</label>
-    	  <md-radio-group [formControl]="form.controls['gender']">
-      	  <md-radio-button value="male">Male</md-radio-button>
-      	  <md-radio-button value="female">Female</md-radio-button>
-      	</md-radio-group>
-        <small *ngIf="!form.controls['gender'].valid && form.controls['gender'].touched" class="md-text-warn">You must select a gender.</small>
-      </div>
     </md-card-content>
     <hr>
     <md-card-actions>
-      <button md-raised-button color="primary" type="submit" [disabled]="!form.valid">Submit</button>
+      <button md-raised-button color="primary" type="submit" [disabled]="!form.valid || uploadLoading">Submit</button>
     </md-card-actions>
   </form>
 </md-card>

@@ -18,6 +18,8 @@ import { SharedModule }       from './shared/shared.module';
 import {AngularFireModule} from "angularfire2";
 import {SessionService} from "./session/session.service";
 import {profileEditorDialog} from "./apps/social/social.component";
+import {AppsService} from "./apps/apps.service";
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -54,7 +56,7 @@ export const firebaseConfig = {
     FlexLayoutModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig)
   ],
-  providers: [SessionService],
+  providers: [SessionService, AppsService, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   entryComponents: [ JazzDialog, profileEditorDialog ],
   bootstrap: [AppComponent]
 })
