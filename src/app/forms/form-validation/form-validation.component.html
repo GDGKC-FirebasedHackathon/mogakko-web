@@ -36,7 +36,22 @@
       </div>
 
       <div class="mb-1">
-        <div id="map" style="width:100%;height:350px;"></div>
+        <label>행사 타입</label>
+        <md-radio-group [formControl]="form.controls['type']">
+          <md-radio-button value="모각코">모각코</md-radio-button>
+          <md-radio-button value="세미나">세미나</md-radio-button>
+          <md-radio-button value="컨퍼런스">컨퍼런스</md-radio-button>
+        </md-radio-group>
+        <small *ngIf="!form.controls['type'].valid && form.controls['type'].touched" class="md-text-warn">반드시 타입을 정해주셔야합니다.</small>
+      </div>
+
+      <div class="mb-1">
+        <label>지도 못넣었어요ㅠㅠ</label>
+        <md-radio-group>
+          <md-radio-button value="선정릉">선정릉</md-radio-button>
+          <md-radio-button value="강남">강남</md-radio-button>
+          <md-radio-button value="신촌">신촌</md-radio-button>
+        </md-radio-group>
       </div>
 
     </md-card-content>
@@ -46,3 +61,4 @@
     </md-card-actions>
   </form>
 </md-card>
+

@@ -7,10 +7,6 @@ import * as firebase from 'firebase';
 import {Router} from "@angular/router";
 import {EventCoding} from "./event.interface";
 
-declare var daum : any;
-declare var data : any;
-declare var pagination: any;
-declare var place: any;
 
 @Component({
   selector: 'app-form-validation',
@@ -22,6 +18,34 @@ export class FormValidationComponent implements OnInit {
   public form: FormGroup;
   private uploadLoading: boolean = false;
 
+
+  lat: number = 37.507797;
+  lng: number = 127.045273;
+  zoom: number = 15;
+
+  styles: any = [{
+    featureType: 'all',
+    stylers: [{
+      saturation: -80
+    }]
+  }, {
+    featureType: 'road.arterial',
+    elementType: 'geometry',
+    stylers: [{
+      hue: '#00ffee'
+    }, {
+      saturation: 50
+    }]
+  }, {
+    featureType: 'poi.business',
+    elementType: 'labels',
+    stylers: [{
+      visibility: 'off'
+    }]
+  }];
+
+  private uid : any;
+
   firebase: any;
   constructor(private af: AngularFire, private router: Router,
               private fb: FormBuilder, @Inject(FirebaseApp) firebase: any){
@@ -29,11 +53,18 @@ export class FormValidationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.af.auth.subscribe(
+      (auth) => {
+        this.uid = auth.auth.uid;
+      }
+    );
+
     this.form = this.fb.group({
       name: [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(30)])],
       description: [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(500)])],
       date: [null, Validators.compose([Validators.required, CustomValidators.date])],
-      image_url: [null]
+      image_url: [null],
+      type: [null, Validators.required],
     });
 
   }
@@ -85,10 +116,16 @@ export class FormValidationComponent implements OnInit {
 
   onSubmit(){
     let event = this.form.value;
-    let data = new EventCoding(event.name, event.description, event.image_url, event.date);
+    let data = new EventCoding(event.name, event.description,
+      event.image_url, event.date, event.type ,"서울 강남구 역삼동 683-36 새롬빌딩 4층",
+      "37.507797,127.045273", this.uid);
     console.log(data);
-    this.af.database.object(`/events/${this.generateUUID()}`)
+    let eventId = this.generateUUID();
+    this.af.database.object(`/events/${eventId}`)
       .update(data);
+    this.af.database.object(`/profiles/${this.uid}/myEvent/${eventId}`).update({
+      date : event.date
+    });
     this.router.navigate(['/apps', 'profile']);
   }
 

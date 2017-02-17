@@ -24,6 +24,7 @@
     "@angular/router": "3.4.6",
     "@swimlane/ngx-datatable": "6.0.2",
     "angular-calendar": "0.4.4",
+    "angular2-google-map-auto-complete": "^2.0.5",
     "angular2-google-maps": "0.17.0",
     "angular2-tree-component": "2.5.1",
     "angularfire2": "^2.0.0-beta.8",
@@ -47,6 +48,7 @@
     "screenfull": "^3.0.2",
     "showdown": "1.6.4",
     "ts-helpers": "1.1.2",
+    "typings": "^2.1.0",
     "zone.js": "0.7.6"
   },
   "devDependencies": {

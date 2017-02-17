@@ -12,7 +12,9 @@ import { MapGoogleComponent } from './map-google/map-google.component';
 import { MapLeafletComponent } from './map-leaflet/map-leaflet.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(MapRoutes), MdCardModule, MdToolbarModule, MdTabsModule, FormsModule, FlexLayoutModule, AgmCoreModule.forRoot({apiKey: 'YOURAPIKEY'})],
+  imports: [CommonModule, RouterModule.forChild(MapRoutes), MdCardModule,
+    MdToolbarModule, MdTabsModule, FormsModule, FlexLayoutModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCA88p1A_K2Z1K0kRlLck_DHkqLDBRPPLk'})],
   declarations: [MapGoogleComponent, MapLeafletComponent]
 })
 

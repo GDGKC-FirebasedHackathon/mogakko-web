@@ -3,6 +3,7 @@ import {AngularFire} from "angularfire2";
 import {Profile} from "./profile.interface";
 import {MdDialogRef, MdDialog, MdDialogConfig} from "@angular/material";
 import {AppsService} from "../apps.service";
+import {EventCoding} from "../../forms/form-validation/event.interface";
 
 @Component({
   selector: 'app-social',
@@ -13,6 +14,7 @@ export class SocialComponent implements OnInit {
 
   private profile: any;
   private uid: any;
+  private myEvents = [];
 
   constructor(private af: AngularFire, public dialog: MdDialog, public appsService: AppsService) {}
 
@@ -26,9 +28,31 @@ export class SocialComponent implements OnInit {
             this.profile = new Profile(snap.name, snap.email, snap.profileImgUrl);
           }
         );
+        let profile = this.af.database.object(`profiles/${this.uid}`).take(1);
+        profile.subscribe(
+          (snap) => {
+            let eventKeys = snap['myEvent'];
+            for(let key in eventKeys){
+              this.getEventDetail(key);
+            }
+          }
+        )
       },
     )
   }
+
+  getEventDetail(key){
+    let event = this.af.database.object(`events/${key}`).take(1);
+    event.subscribe(
+      (snap) => {
+        let data = new EventCoding(snap.name, snap.description, snap.image_url,
+          snap.date, snap.type, snap.address, snap.latlng, snap.author);
+        this.myEvents.push(data);
+      }
+    )
+  }
+
+
 
   // profile editor dialog
   dialogRef: MdDialogRef<profileEditorDialog>;

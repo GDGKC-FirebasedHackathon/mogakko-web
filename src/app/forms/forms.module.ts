@@ -14,10 +14,16 @@ import { FormUploadComponent } from './form-upload/form-upload.component';
 import { FormValidationComponent } from './form-validation/form-validation.component';
 import { FormTreeComponent } from './form-tree/form-tree.component';
 import { EditorComponent } from './editor/editor.component';
+import {AgmCoreModule} from "angular2-google-maps/core";
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(FormRoutes), MdCardModule, MdIconModule, MdInputModule, MdRadioModule, MdButtonModule, MdProgressBarModule, MdToolbarModule, FlexLayoutModule, NgxDatatableModule, FormsModule, ReactiveFormsModule, FileUploadModule, TreeModule],
-  declarations: [FormUploadComponent, FormValidationComponent, FormTreeComponent, EditorComponent],
+  imports: [CommonModule, RouterModule.forChild(FormRoutes), MdCardModule,
+    MdIconModule, MdInputModule, MdRadioModule, MdButtonModule,
+    MdProgressBarModule, MdToolbarModule, FlexLayoutModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyCA88p1A_K2Z1K0kRlLck_DHkqLDBRPPLk'}),
+    NgxDatatableModule, FormsModule, ReactiveFormsModule, FileUploadModule, TreeModule],
+  declarations: [FormUploadComponent, FormValidationComponent,
+    FormTreeComponent, EditorComponent],
 })
 
 export class FormModule {}
