@@ -1,10 +1,10 @@
 <md-toolbar color="primary">
   <md-toolbar-row>
     <span fxFlex></span>
-    <button md-raised-button color="accent" class="ml-xs mr-xs">Edit profile</button>
+    <button md-raised-button color="accent" class="ml-xs mr-xs" (click)="openEditor()">Edit profile</button>
   </md-toolbar-row>
 </md-toolbar>
-
+<div fxLayout="row" fxLayoutWrap="wrap">
 <div class="wrapper">
   <div  fxLayout="row"  fxLayoutWrap="wrap">
     <div fxFlex.gt-sm="100" fxFlex="100">
@@ -13,33 +13,85 @@
           <div  fxLayout="row"  fxLayoutAlign="center center" class="mt-1">
             <div fxFlex>
             </div>
-            <div fxFlex>
-              <img src="assets/images/face1.jpg" class="radius-circle">
+            <div fxFlex *ngIf="profile">
+              <img style="max-height: 200px;" src="{{profile.profileImgUrl}}" class="radius-circle toolbar-avatar">
             </div>
             <div fxFlex>
             </div>
           </div>
-          <p class="mb-1">
-            <a href="" class="block text-lg">Michael Obrien</a>
-            <span class="md-text-muted">London, UK</span>
+          <p class="mb-1" *ngIf="profile">
+            <a href="" class="block text-lg">{{profile.name}}</a>
+            <span class="md-text-muted">{{profile.email}}</span>
           </p>
-
-          <div  fxLayout="row"  fxLayoutWrap="wrap" class="mt-1 text-uppercase">
-            <div fxFlex="33.33%">
-              <h5 class="mt-0 mb-0">89</h5>
-              <p class="mt-0 mb-0 text-md md-text-muted">Photos</p>
-            </div>
-            <div fxFlex="33.33%">
-              <h5 class="mt-0 mb-0">354</h5>
-              <p class="mt-0 mb-0 text-md md-text-muted">Followers</p>
-            </div>
-            <div fxFlex="33.33%">
-              <h5 class="mt-0 mb-0">945</h5>
-              <p class="mt-0 mb-0 text-md md-text-muted">Following</p>
-            </div>
+        </md-card-content>
+      </md-card>
+      <md-card>
+        <md-card-title class="text-xs-center"><h2>내가 참가 신청한 모임</h2></md-card-title>
+        <md-card-content class="text-xs-center">
+          <div  fxLayout="row"  fxLayoutAlign="center center" class="mt-1">
+            <md-card>
+              <md-card-header>
+                <img md-card-avatar src="assets/images/avatar.jpg">
+                <md-card-subtitle>Yesterday</md-card-subtitle>
+                <md-card-title>Gerald Morris</md-card-title>
+              </md-card-header>
+              <img md-card-image src="assets/images/unsplash/22.jpg">
+              <md-card-content>
+                <button md-fab md-fab-card-float class="mr-1" color="warn"><md-icon>share</md-icon></button>
+                <p class="ma-0">Phileas Fogg and Aouda went on board, where they found Fix already installed. Below deck was a square cabin, of which the walls bulged out in the form of cots, above a circular divan; in the centre was a table provided with a swinging lamp.</p>
+              </md-card-content>
+              <hr>
+              <md-card-actions>
+                <div fxLayout="row">
+                  <button md-icon-button>
+                    <md-icon>share</md-icon>
+                  </button>
+                  <button md-icon-button>
+                    <md-icon>favorite</md-icon>
+                  </button>
+                  <span fxFlex></span>
+                  <button md-button>More info</button>
+                  <button md-button>Download</button>
+                </div>
+              </md-card-actions>
+            </md-card>
+          </div>
+        </md-card-content>
+      </md-card>
+      <md-card>
+        <md-card-title class="text-xs-center"><h2>내가 참가 신청한 모임</h2></md-card-title>
+        <md-card-content class="text-xs-center">
+          <div  fxLayout="row"  fxLayoutAlign="center center" class="mt-1">
+            <md-card>
+              <md-card-header>
+                <img md-card-avatar src="assets/images/avatar.jpg">
+                <md-card-subtitle>Yesterday</md-card-subtitle>
+                <md-card-title>Gerald Morris</md-card-title>
+              </md-card-header>
+              <img md-card-image src="assets/images/unsplash/22.jpg">
+              <md-card-content>
+                <button md-fab md-fab-card-float class="mr-1" color="warn"><md-icon>share</md-icon></button>
+                <p class="ma-0">Phileas Fogg and Aouda went on board, where they found Fix already installed. Below deck was a square cabin, of which the walls bulged out in the form of cots, above a circular divan; in the centre was a table provided with a swinging lamp.</p>
+              </md-card-content>
+              <hr>
+              <md-card-actions>
+                <div fxLayout="row">
+                  <button md-icon-button>
+                    <md-icon>share</md-icon>
+                  </button>
+                  <button md-icon-button>
+                    <md-icon>favorite</md-icon>
+                  </button>
+                  <span fxFlex></span>
+                  <button md-button>More info</button>
+                  <button md-button>Download</button>
+                </div>
+              </md-card-actions>
+            </md-card>
           </div>
         </md-card-content>
       </md-card>
     </div>
   </div>
+</div>
 </div>

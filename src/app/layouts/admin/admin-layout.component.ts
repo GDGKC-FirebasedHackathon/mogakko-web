@@ -6,6 +6,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import * as Ps from 'perfect-scrollbar';
 import {AngularFire} from "angularfire2";
 import {SessionService} from "../../session/session.service";
+import {Profile} from "../../apps/social/profile.interface";
 
 @Component({
   selector: 'app-layout',
@@ -31,8 +32,21 @@ export class AdminLayoutComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.af.auth.subscribe(auth => {
-      this.authStatus = auth;
-      console.log(auth)
+      this.authStatus = !!auth;
+      if(this.authStatus) {
+        let profile = this.af.database.object(`/profiles/${auth.auth.uid}`).take(1);
+        profile.subscribe(
+          snap => {
+           if(!snap.profileImgUrl){
+               this.af.database.object(`/profiles/${auth.auth.uid}`)
+                 .update(new Profile(auth.auth.displayName, auth.auth.email, auth.auth.photoURL))
+           }
+          },
+          err => {
+            console.log(err)
+          }
+        )
+      }
     });
 
     let elemSidebar = <HTMLElement>document.querySelector('.sidebar-panel .md-sidenav-focus-trap .cdk-focus-trap-content');

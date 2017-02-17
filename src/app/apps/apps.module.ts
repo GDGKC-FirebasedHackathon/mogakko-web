@@ -14,9 +14,14 @@ import { MediaComponent } from './media/media.component';
 import { ChatComponent } from './chat/chat.component';
 import { SocialComponent } from './social/social.component';
 import { SharedModule } from '../shared/shared.module';
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 
 @NgModule({
-  imports: [CommonModule, SharedModule, RouterModule.forChild(AppsRoutes), MdToolbarModule, MdIconModule, MdCardModule, MdInputModule, MdButtonModule, MdButtonToggleModule, MdListModule, MdGridListModule, MdMenuModule, MdSidenavModule, MdProgressBarModule, MdTabsModule, CalendarModule, FlexLayoutModule, ChartsModule],
+  imports: [CommonModule, SharedModule, RouterModule.forChild(AppsRoutes),
+    FormsModule, ReactiveFormsModule,
+    MdToolbarModule, MdIconModule, MdCardModule, MdInputModule, MdButtonModule, MdButtonToggleModule,
+    MdListModule, MdGridListModule, MdMenuModule, MdSidenavModule, MdProgressBarModule, MdTabsModule,
+    CalendarModule, FlexLayoutModule, ChartsModule],
   declarations: [FullcalendarComponent, MailComponent, MediaComponent, ChatComponent, SocialComponent],
   providers: [
     CalendarEventTitle,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {SessionService} from "../session.service";
+import {AngularFire} from "angularfire2";
 
 @Component({
   selector: 'app-signin',
@@ -11,7 +12,8 @@ import {SessionService} from "../session.service";
 export class SigninComponent implements OnInit {
 
   public form: FormGroup;
-  constructor(private fb: FormBuilder, private router: Router, private sessionService: SessionService) {}
+  constructor(private fb: FormBuilder, private router: Router,
+              private sessionService: SessionService, private af: AngularFire) {}
 
   ngOnInit() {
   	this.form = this.fb.group({

@@ -17,6 +17,7 @@ import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
 import { SharedModule }       from './shared/shared.module';
 import {AngularFireModule} from "angularfire2";
 import {SessionService} from "./session/session.service";
+import {profileEditorDialog} from "./apps/social/social.component";
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, './assets/i18n', '.json');
@@ -36,6 +37,7 @@ export const firebaseConfig = {
     AdminLayoutComponent,
     AuthLayoutComponent,
     JazzDialog,
+    profileEditorDialog
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,7 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [SessionService],
-  entryComponents: [ JazzDialog ],
+  entryComponents: [ JazzDialog, profileEditorDialog ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

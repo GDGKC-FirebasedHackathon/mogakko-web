@@ -1,7 +1,7 @@
 {
   "project": {
     "version": "1.0.0-beta.30",
-    "name": "mogakko" 
+    "name": "mogakko"
   },
   "apps": [
     {
@@ -64,8 +64,8 @@
     "styleExt": "scss",
     "prefixInterfaces": false,
     "inline": {
-      "style": false,
-      "template": false
+      "style": true,
+      "template": true
     },
     "spec": {
       "class": false,
