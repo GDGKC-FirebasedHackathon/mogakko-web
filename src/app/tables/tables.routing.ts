@@ -18,7 +18,7 @@ export const TablesRoutes: Routes = [
       path: 'editing',
       component: TableEditingComponent
     }, {
-      path: 'filter',
+      path: 'filter/:id',
       component: TableFilterComponent
     }, {
       path: 'paging',

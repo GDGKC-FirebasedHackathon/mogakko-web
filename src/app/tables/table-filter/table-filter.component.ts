@@ -1,28 +1,70 @@
-import { Component } from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {AngularFire} from "angularfire2";
+import {Subscription} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-table-filter',
   templateUrl: './table-filter.component.html',
   styleUrls: ['./table-filter.component.scss']
 })
-export class TableFilterComponent {
+export class TableFilterComponent implements OnInit, OnDestroy{
   rows = [];
 
   temp = [];
 
+  private subscription : Subscription;
+
+  private uid: any;
+  private eventId: any;
+
   columns = [
     { prop: 'name' },
-    { name: 'Company' },
-    { name: 'Gender' }
+    { name: 'email' },
   ];
-  
-  constructor() {
-    this.fetch((data) => {
-      // cache our list
-      this.temp = [...data];
-      // push our inital complete list
-      this.rows = data;
-    });
+
+
+  constructor(private af: AngularFire, private route: ActivatedRoute) {
+    // this.fetch((data) => {
+    //   // cache our list
+    //   this.temp = [...data];
+    //   // push our inital complete list
+    //   this.rows = data;
+    // });
+  }
+
+  ngOnInit(){
+    this.subscription = this.route.params.subscribe(
+      (data) => {
+        this.eventId = data['id'];
+        let event = this.af.database.object(`/events/${this.eventId}`).take(1);
+        event.subscribe((snap) => {
+          if(!!snap.participants){
+           let participants = snap.participants;
+            let data = participants.split(',');
+            for(let i=0; i<data.length; i++){
+              this.getProfile(data[i]);
+            }
+          }
+        })
+      },
+    )
+  }
+
+  getProfile(key){
+    let profile = this.af.database.object(`/profiles/${key}`).take(1);
+    profile.subscribe(
+      (snap) => {
+        this.temp.push(snap);
+        this.rows.push(snap);
+        console.log(this.temp);
+        console.log(this.rows);
+      }
+    )
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe()
   }
 
   fetch(cb) {

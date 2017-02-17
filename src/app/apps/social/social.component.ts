@@ -15,6 +15,7 @@ export class SocialComponent implements OnInit {
   private profile: any;
   private uid: any;
   private myEvents = [];
+  private myEventKeys = [];
 
   constructor(private af: AngularFire, public dialog: MdDialog, public appsService: AppsService) {}
 
@@ -47,6 +48,7 @@ export class SocialComponent implements OnInit {
       (snap) => {
         let data = new EventCoding(snap.name, snap.description, snap.image_url,
           snap.date, snap.type, snap.address, snap.latlng, snap.author);
+        this.myEventKeys.push(key);
         this.myEvents.push(data);
       }
     )

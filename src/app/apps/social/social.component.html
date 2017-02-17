@@ -29,7 +29,7 @@
       <md-card>
         <md-card-title class="text-xs-center"><h2>내가 만든 모임</h2></md-card-title>
         <md-card-content class="text-xs-center">
-          <div *ngFor="let event of myEvents;"  fxLayout="row"  fxLayoutAlign="center center" class="mt-1">
+          <div *ngFor="let event of myEvents; let i = index"  fxLayout="row"  fxLayoutAlign="center center" class="mt-1">
             <md-card>
               <md-card-header>
                 <img md-card-avatar src="{{profile.profileImgUrl}}">
@@ -44,14 +44,8 @@
               <hr>
               <md-card-actions>
                 <div fxLayout="row">
-                  <button md-icon-button>
-                    <md-icon>share</md-icon>
-                  </button>
-                  <button md-icon-button>
-                    <md-icon>favorite</md-icon>
-                  </button>
                   <span fxFlex></span>
-                  <button md-button>More info</button>
+                  <button md-button [routerLink]="['/tables', 'filter', myEventKeys[i]]">참가자 보기</button>
                 </div>
               </md-card-actions>
             </md-card>

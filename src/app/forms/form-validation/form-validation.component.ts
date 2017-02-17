@@ -115,12 +115,12 @@ export class FormValidationComponent implements OnInit {
   };
 
   onSubmit(){
+    let eventId = this.generateUUID();
     let event = this.form.value;
     let data = new EventCoding(event.name, event.description,
       event.image_url, event.date, event.type ,"서울 강남구 역삼동 683-36 새롬빌딩 4층",
-      "37.507797,127.045273", this.uid);
+      "37.507797,127.045273", this.uid, eventId);
     console.log(data);
-    let eventId = this.generateUUID();
     this.af.database.object(`/events/${eventId}`)
       .update(data);
     this.af.database.object(`/profiles/${this.uid}/myEvent/${eventId}`).update({
