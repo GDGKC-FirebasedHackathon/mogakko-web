@@ -1,0 +1,10 @@
+@import "../../../assets/styles/scss/components/treeview";
+:host {
+  margin-left: -8px;
+  margin-right: -8px;
+  margin-top: -8px;
+  display: block;
+}
+.md-card-top {
+  margin-top: -64px;
+}

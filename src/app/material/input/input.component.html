@@ -1,0 +1,73 @@
+<md-card>
+  <md-card-title>Input</md-card-title>
+  <md-card-subtitle>Inputs are the basic input component of Material 2</md-card-subtitle>
+  <md-card-content>
+    <div fxLayout="row" fxLayoutAlign="start center" class="mb-2">
+      <md-input placeholder="Password" class="ml-xs mr-xs" type="password" style="width: 100%;"></md-input>
+      <md-input placeholder="Email" class="ml-xs mr-xs" type="email" style="width: 100%"></md-input>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" class="mb-2">
+      <md-input placeholder="amount" align="end" class="ml-xs mr-xs" style="width: 100%;">
+        <span md-prefix>$&nbsp;</span>
+        <span md-suffix>.00</span>
+      </md-input>
+
+      <md-input placeholder="Character count (100 max)" maxLength="100" class="ml-xs mr-xs"
+                  value="Hello world. How are you?"
+                  #characterCountHintExample style="width: 100%;">
+        <md-hint align="end">{{characterCountHintExample.characterCount}} / 100</md-hint>
+      </md-input>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" class="mb-2">
+      <md-input dividerColor="primary" placeholder="Default Color" value="example" class="ml-xs mr-xs" style="width: 100%;"></md-input>
+      <md-input dividerColor="accent" placeholder="Accent Color" value="example" class="ml-xs mr-xs" style="width: 100%;"></md-input>
+      <md-input dividerColor="warn" placeholder="Warn Color" value="example" class="ml-xs mr-xs" style="width: 100%;"></md-input>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" class="mb-2">
+      <md-textarea dividerColor="primary" placeholder="Default Color" value="example" class="ml-xs mr-xs" style="width: 100%;"></md-textarea>
+      <md-textarea dividerColor="accent" placeholder="Accent Color" value="example" class="ml-xs mr-xs" style="width: 100%;"></md-textarea>
+      <md-textarea dividerColor="warn" placeholder="Warn Color" value="example" class="ml-xs mr-xs" style="width: 100%;"></md-textarea>
+
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" class="mb-2">
+      <md-textarea placeholder="Character count (100 max)" maxLength="100" class="demo-full-width"
+                  value="Hello world. How are you?"
+                  #characterCountHintExample class="ml-xs mr-xs" style="width: 100%;">
+        <md-hint align="end">{{characterCountHintExample.characterCount}} / 100</md-hint>
+      </md-textarea>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" class="mb-2">
+      <md-input disabled placeholder="Disabled field" value="Value" class="ml-xs mr-xs" style="width: 100%;"></md-input>
+
+      <md-input required placeholder="Required field" class="ml-xs mr-xs" style="width: 100%;"></md-input>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" class="mb-2">
+      <md-input placeholder="Show Hint Label" class="ml-xs mr-xs" style="width: 100%;"
+                hintLabel="Hint label"></md-input>
+
+      <md-input placeholder="Show Hint Label With Character Count" class="ml-xs mr-xs" style="width: 100%;"
+                hintLabel="Hint label" characterCounter></md-input>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start center" class="mb-2">
+      <div class="ml-xs mr-xs" style="width: 100%;">Hello <md-input [(ngModel)]="name" type="text" placeholder="First name"></md-input>,
+    how are you?</div>
+
+      <md-input style="width:100%">
+        <md-placeholder>
+          I <md-icon>favorite</md-icon> <b>bold</b> placeholder
+        </md-placeholder>
+        <md-hint>
+          I also <md-icon>home</md-icon> <i>italic</i> hint labels
+        </md-hint>
+      </md-input>
+    </div>
+  </md-card-content>
+</md-card>
+

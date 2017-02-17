@@ -1,0 +1,10 @@
+.md-tab-label {
+	color: rgba(md-color($foreground, base), 0.87);
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.app-dark .md-tab-label {
+	color: md-color($dark-foreground, base);
+}

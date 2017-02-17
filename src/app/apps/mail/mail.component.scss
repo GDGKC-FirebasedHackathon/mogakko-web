@@ -1,0 +1,21 @@
+@import "../../../assets/styles/scss/components/messages";
+:host {
+  margin-left: -6px;
+  margin-right: -6px;
+  margin-top: -6px;
+  display: block;
+}
+:host /deep/ {
+  md-sidenav {
+    width: 200px;
+  }
+  .md-sidenav-content {
+    padding: 0;
+  }
+  @media (min-width: 959px) {
+    .md-sidenav-side {
+      background-color: transparent;
+      box-shadow: none!important;
+    }
+  }
+}

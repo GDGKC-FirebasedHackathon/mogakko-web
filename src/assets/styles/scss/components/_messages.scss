@@ -1,0 +1,83 @@
+@import "../material.variables";
+@import "../mixins/bi-app/bi-app-ltr";
+@import "../app.variables";
+@import "../mixins";
+:host /deep/ {
+  .accordion-toggle {
+    cursor: pointer;
+  }
+  .message-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 12px;
+  }
+  .message-content {
+    overflow: hidden;
+    max-height: 0;
+    -webkit-transition: .3s cubic-bezier(.35, 0, .25, 1);
+    -moz-transition: .3s cubic-bezier(.35, 0, .25, 1);
+    transition: .3s cubic-bezier(.35, 0, .25, 1);
+    -webkit-transition-property: max-height;
+    -moz-transition-property: max-height;
+    transition-property: max-height;
+  }
+  .accordion-link {
+    -webkit-transition: .3s cubic-bezier(.35, 0, .25, 1);
+    -moz-transition: .3s cubic-bezier(.35, 0, .25, 1);
+    transition: .3s cubic-bezier(.35, 0, .25, 1);
+    -webkit-transition-property: margin;
+    -moz-transition-property: margin;
+    transition-property: margin;
+    }
+  .accordion-link.open .message-content {
+    max-height: 1000px;
+  }
+  .accordion-link.open .md-list-item {
+    padding: 0.8rem 2rem;
+  }
+  .accordion-link:not(.open) {
+    .show-on-open {
+      display: none;
+    }
+  }
+  .accordion-link.open {
+    margin: 1rem -1rem!important;
+    .hide-on-open {
+      display: none;
+    }
+  }
+  .messages-nav {
+    md-icon {
+      margin-right: 16px;
+    }
+  }
+  .messages-list .md-list-item {
+    display: block!important;
+    height: auto;
+    padding: 0.8rem $gutter;
+  }
+  .messages-list {
+    position: relative;
+    md-list-item {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.05),0 1px 1px rgba(0,0,0,.05)!important;
+      background-color: #fff;
+      display: block;
+    }
+  }
+}
+.app-dark :host /deep/ {
+  .messages-list {
+    md-list-item {
+      background: md-color($dark-background, card);
+      color: md-color($dark-foreground, base);
+    }
+  }
+}
+[dir="rtl"] :host /deep/ {
+  .messages-nav {
+    md-icon {
+      margin-right: 0;
+      margin-left: 16px;
+    }
+  }
+}

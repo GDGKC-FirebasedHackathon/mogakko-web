@@ -1,0 +1,23 @@
+<div class="session md-indigo">
+  <div class="session-content">
+    <div class="lockscreen-wrapper text-xs-center">
+      <md-card>
+        <md-card-content>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="lockscreen-avatar">
+              <img src="assets/images/avatar.jpg" class="radius-round" alt="user" title="user"/>
+            </div>
+            <p class="center-block mt-1">David Miller</p>
+            <div fxLayout="column" fxLayoutAlign="space-around">
+              <div class="pb-1">
+                <md-input placeholder="Username" [formControl]="form.controls['uname']" style="width: 100%"></md-input>
+                <small *ngIf="form.controls['uname'].hasError('required') && form.controls['uname'].touched" class="md-text-warn">Username is required.</small>
+              </div>
+              <div> <button md-raised-button color="primary" type="submit" [disabled]="!form.valid">Unlock</button></div>
+            </div>
+          </form>
+        </md-card-content>
+      </md-card>   
+    </div>
+  </div>
+</div>

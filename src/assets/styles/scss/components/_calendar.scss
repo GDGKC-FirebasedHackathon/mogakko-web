@@ -1,0 +1,85 @@
+@import "../material.variables";
+@import "../mixins/bi-app/bi-app-ltr";
+@import "../app.variables";
+@import "../mixins";
+
+:host /deep/ {
+  .cal-day-view {
+    .cal-hour-rows {
+      border-top: 0;
+      border-bottom: 0;
+      border-color: md-color($foreground, divider);
+    }
+
+    .cal-hour:nth-child(odd) {
+      background-color: md-color($background, 'hover');
+    }
+
+    .cal-hour:not(:last-child) .cal-hour-segment,
+    .cal-hour:last-child :not(:last-child) .cal-hour-segment {
+      border-color: md-color($foreground, divider);
+    }
+
+    .cal-hour-segment:hover {
+      background-color: md-color($background, 'hover');
+    }
+  }
+
+  .cal-month-view {
+    .cal-cell-row:hover {
+      background-color: md-color($background, 'hover');
+    }
+
+    .cal-cell-row .cal-cell:hover,
+    .cal-cell.cal-has-events.cal-open {
+      background-color: md-color($background, 'hover');
+    }
+
+    .cal-days {
+      border-color: md-color($foreground, divider);
+    }
+
+    .cal-day-cell:not(:last-child) {
+      border-color: md-color($foreground, divider);
+    }
+
+    .cal-days .cal-cell-row {
+      border-color: md-color($foreground, divider);
+    }
+
+    .cal-open-day-events {
+      box-shadow: none;
+    }
+  }
+
+  .cal-week-view {
+    .cal-day-headers {
+      border-color: md-color($foreground, divider);
+    }
+
+    .cal-day-headers .cal-header:not(:last-child) {
+      border-color: md-color($foreground, divider);
+    }
+
+    .cal-day-headers .cal-header:hover {
+      background-color: md-color($background, 'hover');
+    }
+
+    .cal-event.cal-starts-within-week {
+      border-top-left-radius: $border-radius-base;
+      border-bottom-left-radius: $border-radius-base;;
+    }
+
+    .cal-event.cal-ends-within-week {
+      border-top-right-radius: $border-radius-base;;
+      border-bottom-right-radius: $border-radius-base;;
+    }
+  }
+
+  .cal-month-view .cal-days,
+  .cal-day-view .cal-hour-rows,
+  .cal-week-view .cal-day-headers  {
+    border-left: 0;
+    border-right: 0;
+  }
+}

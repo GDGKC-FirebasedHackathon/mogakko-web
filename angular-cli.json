@@ -1,0 +1,79 @@
+{
+  "project": {
+    "version": "1.0.0-beta.30",
+    "name": "mogakko" 
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/quill/dist/quill.snow.css",
+        "../node_modules/dragula/dist/dragula.css",
+        "../node_modules/leaflet/dist/leaflet.css",
+        "../node_modules/angular-calendar/scss/angular-calendar.scss",
+        "../node_modules/@swimlane/ngx-datatable/release/index.css",
+        "../node_modules/@swimlane/ngx-datatable/release/material.css",
+        "assets/fonts/pe/css/pe-icon-set-weather.css",
+        "assets/fonts/data-table/icons.css",
+        "assets/styles/app.scss"
+      ],
+      "scripts": [
+        "../node_modules/hammerjs/hammer.min.js",
+        "../node_modules/showdown/dist/showdown.js",
+        "../node_modules/chart.js/dist/Chart.bundle.min.js"
+      ],
+      "environments": {
+        "source": "environments/environment.ts",
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "files": "src/**/*.ts",
+      "project": "src/tsconfig.json"
+    },
+    {
+      "files": "e2e/**/*.ts",
+      "project": "e2e/tsconfig.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
+  }
+}

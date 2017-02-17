@@ -1,0 +1,10 @@
+.md-select-panel {
+	background-color: md-color($background, card);
+}
+md-option {
+    font-size: $font-size-base!important;
+}
+
+.app-dark .md-select-panel {
+	background-color: md-color($dark-background, card);
+}

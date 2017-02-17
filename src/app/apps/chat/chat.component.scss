@@ -1,0 +1,19 @@
+@import "../../../assets/styles/scss/components/chat";
+:host {
+  margin-left: -6px;
+  margin-right: -6px;
+  margin-top: -6px;
+  display: block;
+}
+:host /deep/ {
+  .md-sidenav-content {
+    padding: 0;
+  }
+  .md-card-top {
+    margin-top: -64px;
+  }
+  md-toolbar + hr, md-card-content + hr {
+    margin-left: -6px;
+    margin-right: -6px;
+  }
+}
