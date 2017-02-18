@@ -35,7 +35,9 @@ export class SessionService {
   signOut(){
     this.af.auth.logout().then(
       (e) => {
-        this.router.navigate(['/session', 'signin']);
+        this.router.navigate(['/session', 'signin' +
+        '']);
+        location.reload();
       }
     );
   }

@@ -8,7 +8,7 @@ export class EventCoding {
     public address: string = null, // TODO 지도
     public latlng: string = null, // TODO 지도
     public author: string = null,
-    public envetId: stirng = null,
+    public eventId: string = null,
     public participants : any = [],
   ){}
 }
